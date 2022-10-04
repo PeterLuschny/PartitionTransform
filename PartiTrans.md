@@ -27,24 +27,37 @@ In such a case, simply ignore the first row and the first column (by convention)
 
 ## PMatrix in Maple
 
-<pre>Alpha := [a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z]:
+<pre>
+    PMatrix := proc(dim, seqfun:=NULL, inv:=false) 
+    local n, k, m, g, M, A; 
 
-PMatrix := proc(dim, a:=NULL) local n, k, m, g, M, A; 
     if n = 0 then return [1] fi;
-    if a = NULL then g := n -> Alpha[n] else g := a fi;
     # Cache the input sequence.
-    A := [seq(g(i), i = 1..dim-1)]; print(`In:`, A);
+    A := [seq(seqfun(i), i = 1..dim-1)]; print(`In:`, A);
     M := Matrix(dim, shape=triangular[lower]); M[1, 1] := 1;
-    for m from 2 to dim do
-        M[m, m] := M[m - 1, m - 1] * A[1];
-        for k from m-1 by -1 to 2 do
-            M[m, k] := expand(add(A[i] * M[m-i, k-1], i = 1..m-k+1))
-        od;
-    od;  
+
+    if inv then
+        for m from 2 to dim do
+            M[m, m] := M[m - 1, m - 1] / A[1];
+            for k from m-1 by -1 to 2 do
+                M[m, k] := M[m - 1, k - 1] - 
+                    add(A[i+1] * M[m, k + i], i = 1..m-k) / A[1]
+            od
+        od
+    else
+        for m from 2 to dim do
+            M[m, m] := M[m - 1, m - 1] * A[1];
+            for k from m-1 by -1 to 2 do
+                M[m, k] := add(A[i] * M[m-i, k-1], i = 1..m-k+1)
+            od
+        od
+   fi;
 M end:
 </pre>
 
 <p> Example use:</p>
 <pre>
-PMatrix(10, n -> a(n + Shift));
+dim := 7; s := n -> n; 
+M  := PMatrix(dim, s, false);
+IM := PMatrix(dim, s, true);
 </pre>
