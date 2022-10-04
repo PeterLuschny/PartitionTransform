@@ -1,4 +1,4 @@
-| Link | Generator  | Table  | Shift | Code  |
+| Link | Generator  | Table  | Shift | Maple Function  |
 | ---  | ---        | ---    | ---   |---    |
 | [OEIS](https://oeis.org/search?q=id:A000012%7Cid%3AA097805&fmt=short) | A000012 | A097805 | 0  | <code>a := n -> 1: </code> |
 | [OEIS](https://oeis.org/search?q=id:A000041%7Cid%3AA060642&fmt=short) | A000041 | A060642 | 0 | <code>a := n -> combinat:-numbpart(n): </code> |
