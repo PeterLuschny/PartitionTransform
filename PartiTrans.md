@@ -5,6 +5,9 @@
 | [OEIS](https://oeis.org/search?q=id:A000081%7Cid%3AA339067&fmt=short) | A000081 | A339067 |A050395   | 0   | <code>a := proc(n) option remember; local d, j; ifelse(n<=1, n, (add(add(d * a(d), d=NumberTheory:-Divisors(j)) * a(n-j), j = 1..n-1)) / (n-1)) end: </code> |
 | [OEIS](https://oeis.org/search?q=id:A000108%7Cid%3AA033184&fmt=short) | A000108 | A033184 | --   | -1  | <code>a := n -> binomial(2*n, n)/(n+1); </code> |
 | [OEIS](https://oeis.org/search?q=id:A000108%7Cid%3AA039598&fmt=short) | A000108 | A039598 |A181983  | 0   | <code>a := n -> binomial(2*n, n)/(n+1); </code> |
+| [OEIS](https://oeis.org/search?q=id:A000108%7Cid%3AA039598&fmt=short) | A000110 | A357583 |A007311  | 0   | <code>a := n -> combinat:-bell(n); </code> |
+| [OEIS](https://oeis.org/search?q=id:A000217%7Cid%3AA206294&fmt=short) | A000217 | A206294 | A179848 | 0   | <code>a := n -> n -> n * (n+1)/2; </code> |
+| [OEIS](https://oeis.org/search?q=id:A001006%7Cid%3AA202710&fmt=short) | A001006 | A202710 | A014137 | 0   | <code>a := n -> simplify((-1)^(n+1)* hypergeom([(1-n)/2, -n/2], [2], 4)); </code> |
 | [OEIS](https://oeis.org/search?q=id:A001477%7Cid%3AA078812&fmt=short) | A001477 | A078812 | A000108   | 0   | <code>a := n -> n: </code> |
 | [OEIS](https://oeis.org/search?q=id:A002865%7Cid%3AA128627&fmt=short) | A002865 | A128627 |--   | -1  | <code>a:= proc(n) option remember; ifelse(n=0, 1, add((numtheory:-sigma(j)-1)*a(n-j), j=1..n)/n) end: </code> |
 | [OEIS](https://oeis.org/search?q=id:A005043%7Cid%3AA097609&fmt=short) | A005043 | A097609 |A010892  | -1  | <code>a := proc(n) option remember; ifelse(n<=1, 1 - n, (n-1) * (2 * a(n-1) + 3 * a(n-2)) / (n+1)) end: </code> |
